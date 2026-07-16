@@ -88,57 +88,11 @@ export const CHRONIC_DISEASE = {
   ],
 };
 
-export const WELLNESS_INDEX = {
-  labels: ['Physical', 'Mental', 'Social', 'Financial', 'Nutritional'],
-  values: [82, 74, 88, 69, 76],
-};
-
-// ── Wellness Dashboard Data ────────────────────────────────────────
-
-export const WELLNESS_TREND = {
-  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
-  overall: [72, 74, 75, 78, 79, 81, 84],
-  physical: [68, 70, 72, 74, 76, 78, 82],
-  mental: [65, 66, 68, 70, 71, 73, 74],
-};
-
-// NOTE (requirements alignment, Jul 2026): HR-facing wellness scoring, program
-// stats, risk indicators, rewards and campaigns were removed from the HR
-// dashboard — the current Health Savvy system has no data capture for them and
-// published health scores require endorsement by health professionals.
-// See REQUIREMENTS.md R5–R8 (Phase 2). WELLNESS_INDEX / WELLNESS_TREND remain
-// for the patient-facing wellness view only.
-
-export const BIOMETRIC_SUMMARY = {
-  avgBMI: 26.2,
-  bmiTrend: -0.3,
-  avgBloodPressure: '124/79',
-  bpNormal: 78,
-  avgRestingHR: 74,
-  hrNormal: 82,
-  avgSteps: 6840,
-  stepsGoal: 10000,
-  avgSleep: 6.8,
-  sleepGoal: 8,
-  avgGlucose: 102,
-  glucoseNormal: 84,
-};
-
-export const AI_INSIGHTS = {
-  summary: [
-    'Medical expenditure increased by 11% month-over-month, driven primarily by respiratory illness and specialist referrals.',
-    'Respiratory illnesses increased by 18% compared to the previous quarter, indicating a seasonal trend.',
-    'Diabetes cases remain stable at 1,860 active patients, with 92% medication adherence.',
-    'Three departments (Sales, Operations, Support) exceeded their quarterly healthcare budget by 8-14%.',
-  ],
-  recommendations: [
-    { title: 'Launch seasonal vaccination campaign', impact: 'High', confidence: 94 },
-    { title: 'Schedule preventive health screening for high-risk groups', impact: 'High', confidence: 91 },
-    { title: 'Review specialist referral patterns in Sales & Operations', impact: 'Medium', confidence: 87 },
-    { title: 'Reduce unnecessary repeat consultations via telehealth', impact: 'Medium', confidence: 83 },
-  ],
-  confidence: 92,
-};
+// NOTE (requirements alignment, Jul 2026): all wellness scoring, health/risk
+// scores, program stats, rewards and campaigns are removed platform-wide —
+// the current Health Savvy system has no data capture for them and published
+// health scores require endorsement by health professionals. Phase 2 only.
+// See REQUIREMENTS.md R5–R8 and the reviewer confirmations of 15 Jul 2026.
 
 export const PATIENTS = [
   { id: 'P-1001', name: 'John Anderson', age: 45, gender: 'M', department: 'Engineering', risk: 'Medium', lastVisit: '2026-07-02', conditions: ['Hypertension', 'Pre-diabetes'] },
@@ -210,9 +164,9 @@ export const PATIENT_PRESCRIPTIONS = [
 
 export const PATIENT_CLAIMS = [
   { date: 'Jul 08', provider: 'NTT Wellness Clinic', amount: 320, status: 'approved' },
-  { date: 'Jun 28', provider: 'LabCorp', amount: 180, status: 'approved' },
-  { date: 'Jun 15', provider: 'CarePlus Pharmacy', amount: 95, status: 'pending' },
-  { date: 'May 20', provider: 'Riverside Radiology', amount: 240, status: 'approved' },
+  { date: 'Jun 28', provider: 'Downtown Health Hub', amount: 180, status: 'approved' },
+  { date: 'Jun 15', provider: 'CarePlus Clinic', amount: 95, status: 'pending' },
+  { date: 'May 20', provider: 'Riverside Family Care', amount: 240, status: 'approved' },
 ];
 
 export const NOTIFICATIONS: Notification[] = [
@@ -327,6 +281,13 @@ export const ECOSYSTEM_SERVICES = [
 // report is suppressed rather than risk misleading conclusions.
 
 export const MIN_CLAIMS_FOR_REPORT = 100;
+
+// Monthly outpatient claims trend, derived from submitted claims (RM).
+export const OUTPATIENT_CLAIMS_TREND = {
+  labels: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+  amounts: [2410, 2680, 2950, 3140, 3260, 3320],
+  counts: [22, 24, 27, 28, 29, 30],
+};
 
 export const OBSERVATION_REPORTS: ObservationsReportData[] = [
   {

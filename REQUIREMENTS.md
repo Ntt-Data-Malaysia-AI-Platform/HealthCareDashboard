@@ -98,6 +98,24 @@ Candidate features, in the client's frame of care management, not diagnosis:
 - **ROI measurability**: report metrics chosen so cost impact can be validated over time
   (claims cost, incidence rate, absenteeism).
 
+## 5a. Reviewer confirmations (15 Jul 2026)
+
+A second review pass confirmed the alignment and added platform-wide clarifications:
+
+- **Current phase supported scope**: outpatient claims summary, claims trends,
+  utilization reports, claim amount analysis, basic reporting. (Claims trend chart
+  added to the HR dashboard accordingly.)
+- **No scores anywhere**: health scores, risk scores, wellness/lifestyle scores are
+  removed from *all* views — including the Patient portal wellness section and the
+  Doctor workspace's numeric "Patient Risk Score" — until validated data and
+  health-professional endorsement exist.
+- **No HR-system data anywhere**: department, designation, tenure and leave data are
+  not integrated; department displays removed from Doctor and Patient views too.
+- **Tier limits**: display only because tier data comes from Health Savvy benefit
+  records; do not assume a uniform limit.
+- **AI expectations**: current reporting is rule-based and labelled as such; AI
+  prediction/analytics remain clearly-marked Phase 2 roadmap items.
+
 ## 6. Out of scope (explicitly, per comments)
 
 - Pharmacy / specialist / imaging / mental-health / inpatient / emergency claim categories (no data)

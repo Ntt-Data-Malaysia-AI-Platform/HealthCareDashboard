@@ -19,12 +19,6 @@ const VITAL_STATUS = {
   low: 'text-warn-600 bg-warn-50 dark:bg-warn-500/10 dark:text-warn-400',
 };
 
-const RISK_BADGE = {
-  High: 'bg-danger-50 text-danger-700 dark:bg-danger-500/10 dark:text-danger-400',
-  Medium: 'bg-warn-50 text-warn-700 dark:bg-warn-500/10 dark:text-warn-400',
-  Low: 'bg-accent-50 text-accent-700 dark:bg-accent-500/10 dark:text-accent-400',
-};
-
 export function DoctorPage() {
   const [selectedPatient, setSelectedPatient] = useState(PATIENTS[2]);
   const [copilotOutput, setCopilotOutput] = useState<string | null>(null);
@@ -36,7 +30,7 @@ export function DoctorPage() {
     setTimeout(() => {
       setCopilotLoading(false);
       const outputs: Record<string, string> = {
-        'Summarize Consultation': `**Consultation Summary — ${selectedPatient.name}**\n\n• 52-year-old male, Operations department\n• Chief complaint: Follow-up for Type 2 Diabetes & Hypertension\n• Current BP: 142/88 (elevated), HbA1c: 6.8% (above target)\n• Medication adherence: Good (92%)\n• Lifestyle: Sedentary, diet needs improvement\n\n**Assessment:** Diabetes partially controlled. BP remains above target despite Lisinopril. Consider dose adjustment.\n\n**Plan:**\n1. Increase Lisinopril to 20mg daily\n2. Refer to dietitian\n3. Recheck BP in 2 weeks`,
+        'Summarize Consultation': `**Consultation Summary — ${selectedPatient.name}**\n\n• 52-year-old male\n• Chief complaint: Follow-up for Type 2 Diabetes & Hypertension\n• Current BP: 142/88 (elevated), HbA1c: 6.8% (above target)\n• Medication adherence: Good (92%)\n• Lifestyle: Sedentary, diet needs improvement\n\n**Assessment:** Diabetes partially controlled. BP remains above target despite Lisinopril. Consider dose adjustment.\n\n**Plan:**\n1. Increase Lisinopril to 20mg daily\n2. Refer to dietitian\n3. Recheck BP in 2 weeks`,
         'Suggest ICD Codes': `**Suggested ICD-10 Codes:**\n\n• **E11.9** — Type 2 diabetes mellitus without complications (94% match)\n• **I10** — Essential (primary) hypertension (91% match)\n• **E78.5** — Hyperlipidemia, unspecified (88% match)\n• **Z79.4** — Long-term (current) use of insulin\n• **Z79.899** — Other long-term drug therapy\n\n*Confidence scores based on clinical notes analysis.*`,
         'Highlight Abnormal Vitals': `**Abnormal Vitals Detected:**\n\n• ⚠️ **Blood Pressure: 142/88 mmHg** — Above target (<130/80 for diabetic patients)\n• ⚠️ **Blood Glucose: 128 mg/dL** — Above fasting range (70-99)\n• ⚠️ **BMI: 28.4** — Overweight category\n\n**AI Recommendation:** BP is the most critical. Current Lisinopril 10mg may be insufficient. Consider titration to 20mg or adding Amlodipine.`,
         'Check Drug Interactions': `**Drug Interaction Check:**\n\n✅ Metformin + Lisinopril — No significant interaction\n⚠️ **Metformin + Atorvastatin** — Minor: monitor for myopathy risk\n✅ Lisinopril + Atorvastatin — No interaction\n\n**No major contraindications detected.** Continue current regimen with routine monitoring.`,
@@ -79,9 +73,8 @@ export function DoctorPage() {
               >
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-sm font-semibold text-navy-800 dark:text-slate-200">{p.name}</span>
-                  <span className={`badge ${RISK_BADGE[p.risk as keyof typeof RISK_BADGE]}`}>{p.risk}</span>
                 </div>
-                <p className="text-xs text-slate-400">{p.id} · {p.age}{p.gender} · {p.department}</p>
+                <p className="text-xs text-slate-400">{p.id} · {p.age}{p.gender}</p>
                 <div className="flex flex-wrap gap-1 mt-1.5">
                   {p.conditions.map((c) => (
                     <span key={c} className="text-[10px] px-1.5 py-0.5 rounded bg-slate-100 dark:bg-navy-800 text-slate-500 dark:text-slate-400">{c}</span>
@@ -103,22 +96,12 @@ export function DoctorPage() {
                 </div>
                 <div>
                   <h3 className="font-bold text-navy-900 dark:text-white">{selectedPatient.name}</h3>
-                  <p className="text-xs text-slate-400">{selectedPatient.id} · {selectedPatient.age}{selectedPatient.gender} · {selectedPatient.department}</p>
+                  <p className="text-xs text-slate-400">{selectedPatient.id} · {selectedPatient.age}{selectedPatient.gender}</p>
                 </div>
               </div>
               <div className="text-right">
-                <p className="text-xs text-slate-400 mb-1">Patient Risk Score</p>
-                <div className="flex items-center gap-2">
-                  <div className="w-24 h-2 rounded-full bg-slate-100 dark:bg-navy-800 overflow-hidden">
-                    <div
-                      className={`h-full rounded-full ${selectedPatient.risk === 'High' ? 'bg-danger-500' : selectedPatient.risk === 'Medium' ? 'bg-warn-500' : 'bg-accent-500'}`}
-                      style={{ width: `${selectedPatient.risk === 'High' ? 82 : selectedPatient.risk === 'Medium' ? 55 : 25}%` }}
-                    />
-                  </div>
-                  <span className={`text-sm font-bold ${selectedPatient.risk === 'High' ? 'text-danger-600' : selectedPatient.risk === 'Medium' ? 'text-warn-600' : 'text-accent-600'}`}>
-                    {selectedPatient.risk === 'High' ? '82' : selectedPatient.risk === 'Medium' ? '55' : '25'}
-                  </span>
-                </div>
+                <p className="text-xs text-slate-400 mb-1">Active Conditions</p>
+                <span className="text-xl font-bold text-navy-800 dark:text-slate-200">{selectedPatient.conditions.length}</span>
               </div>
             </div>
           </div>

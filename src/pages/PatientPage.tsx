@@ -1,12 +1,5 @@
 import * as Icons from 'lucide-react';
-import { LineChart } from '../components/Charts';
-import { PatientWellness } from '../components/PatientWellness';
 import { PATIENT_APPOINTMENTS, PATIENT_PRESCRIPTIONS, PATIENT_CLAIMS } from '../data';
-
-const HEALTH_SCORE_DATA = {
-  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
-  values: [78, 80, 79, 82, 84, 85, 87],
-};
 
 const MEDICINE_REMINDERS = [
   { name: 'Metformin 500mg', time: '8:00 AM & 8:00 PM', status: 'due' },
@@ -50,33 +43,24 @@ export function PatientPage() {
             </div>
             <div>
               <h2 className="text-lg font-bold text-navy-900 dark:text-white">John Anderson</h2>
-              <p className="text-sm text-slate-500 dark:text-slate-400">P-1001 · Engineering · Member since 2021</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400">P-1001 · Member since 2021</p>
             </div>
           </div>
           <div className="flex items-center gap-6">
             <div className="text-center">
-              <div className="flex items-center gap-1.5 justify-center">
-                <div className="w-10 h-10 rounded-xl bg-accent-50 dark:bg-accent-500/10 flex items-center justify-center">
-                  <Icons.HeartPulse className="w-5 h-5 text-accent-600 dark:text-accent-400" />
-                </div>
-              </div>
-              <p className="text-2xl font-bold text-accent-600 dark:text-accent-400 mt-1">87</p>
-              <p className="text-xs text-slate-400">Health Score</p>
-            </div>
-            <div className="text-center">
               <div className="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-500/10 flex items-center justify-center mx-auto">
                 <Icons.Gift className="w-5 h-5 text-brand-600 dark:text-brand-400" />
               </div>
-              <p className="text-2xl font-bold text-brand-600 dark:text-brand-400 mt-1">$2,160</p>
+              <p className="text-2xl font-bold text-brand-600 dark:text-brand-400 mt-1">RM2,160</p>
               <p className="text-xs text-slate-400">Benefit Balance</p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Top row: appointments + health score trend */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <div className="card p-5 animate-fade-in lg:col-span-2">
+      {/* Appointments */}
+      <div className="grid grid-cols-1 gap-4">
+        <div className="card p-5 animate-fade-in">
           <div className="flex items-center gap-2.5 mb-4">
             <div className="w-8 h-8 rounded-lg bg-brand-50 dark:bg-brand-500/10 flex items-center justify-center text-brand-600 dark:text-brand-400">
               <Icons.Calendar className="w-4 h-4" />
@@ -103,19 +87,6 @@ export function PatientPage() {
           </div>
         </div>
 
-        <div className="card p-5 animate-fade-in">
-          <div className="flex items-center gap-2.5 mb-4">
-            <div className="w-8 h-8 rounded-lg bg-accent-50 dark:bg-accent-500/10 flex items-center justify-center text-accent-600 dark:text-accent-400">
-              <Icons.TrendingUp className="w-4 h-4" />
-            </div>
-            <h3 className="font-semibold text-sm text-navy-900 dark:text-white">Health Score Trend</h3>
-          </div>
-          <LineChart labels={HEALTH_SCORE_DATA.labels} values={HEALTH_SCORE_DATA.values} height={160} color="#10b981" />
-          <div className="mt-3 flex items-center justify-between text-xs">
-            <span className="text-slate-400">Current: <span className="font-bold text-accent-600 dark:text-accent-400">87/100</span></span>
-            <span className="text-accent-600 dark:text-accent-400 font-semibold">+9 pts YTD</span>
-          </div>
-        </div>
       </div>
 
       {/* Prescriptions + Medicine reminders */}
@@ -189,9 +160,6 @@ export function PatientPage() {
         </div>
       </div>
 
-      {/* Wellness Dashboard */}
-      <PatientWellness />
-
       {/* Claims + History */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div className="card p-5 animate-fade-in">
@@ -206,7 +174,7 @@ export function PatientPage() {
               <div key={i} className="flex items-center justify-between p-2.5 rounded-lg border border-slate-100 dark:border-navy-800">
                 <div>
                   <p className="text-sm font-medium text-navy-800 dark:text-slate-200">{c.provider}</p>
-                  <p className="text-xs text-slate-400">{c.date} · ${c.amount}</p>
+                  <p className="text-xs text-slate-400">{c.date} · RM{c.amount}</p>
                 </div>
                 <span className={`badge ${STATUS_BADGE[c.status]}`}>{c.status}</span>
               </div>
@@ -214,7 +182,7 @@ export function PatientPage() {
           </div>
           <div className="mt-3 pt-3 border-t border-slate-100 dark:border-navy-800 flex items-center justify-between text-sm">
             <span className="text-slate-400">Total claimed YTD</span>
-            <span className="font-bold text-navy-800 dark:text-slate-200">$835</span>
+            <span className="font-bold text-navy-800 dark:text-slate-200">RM835</span>
           </div>
         </div>
 
