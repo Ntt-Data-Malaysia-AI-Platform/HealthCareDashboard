@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    @apply bg-slate-50 text-navy-900 antialiased;
+  }
+  .dark body {
+    @apply bg-navy-950 text-slate-100;
+  }
+  * {
+    @apply border-slate-200;
+  }
+  .dark * {
+    @apply border-navy-800;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/70 backdrop-blur-xl border border-white/60;
+  }
+  .dark .glass {
+    @apply bg-navy-900/60 border-navy-700/60;
+  }
+  .card {
+    @apply bg-white rounded-2xl border border-slate-200/80 shadow-soft;
+  }
+  .dark .card {
+    @apply bg-navy-900 border-navy-800;
+  }
+  .nav-link {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-navy-200/80 hover:text-white hover:bg-white/10 transition-all duration-200;
+  }
+  .nav-link-active {
+    @apply text-white bg-brand-500/20 shadow-glow;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply btn bg-brand-500 text-white hover:bg-brand-600 shadow-soft hover:shadow-glow;
+  }
+  .btn-ghost {
+    @apply btn text-navy-600 hover:bg-slate-100;
+  }
+  .dark .btn-ghost {
+    @apply text-slate-300 hover:bg-navy-800;
+  }
+  .btn-outline {
+    @apply btn border border-slate-300 text-navy-700 hover:bg-slate-50 hover:border-brand-300;
+  }
+  .dark .btn-outline {
+    @apply border-navy-700 text-slate-200 hover:bg-navy-800;
+  }
+  .input {
+    @apply w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-white text-sm text-navy-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-transparent transition;
+  }
+  .dark .input {
+    @apply bg-navy-900 border-navy-700 text-slate-100 placeholder:text-slate-500;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold;
+  }
+  .skeleton {
+    @apply bg-gradient-to-r from-slate-200 via-slate-100 to-slate-200 bg-[length:1000px_100%] animate-shimmer rounded;
+  }
+  .dark .skeleton {
+    @apply from-navy-800 via-navy-700 to-navy-800;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.3);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.5);
+}
+
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid #3366ff;
+  outline-offset: 2px;
+}
