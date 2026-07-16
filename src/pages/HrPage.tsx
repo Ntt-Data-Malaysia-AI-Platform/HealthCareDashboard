@@ -1,13 +1,12 @@
 import { Fragment, useState, useMemo, useEffect, useCallback } from 'react';
 import * as Icons from 'lucide-react';
-import { BarChart, DonutChart, LineChart } from '../components/Charts';
+import { BarChart, DonutChart } from '../components/Charts';
 import {
   CLAIM_RECORDS,
   CLAIM_LIMIT_TIERS,
   getEmployeeLimit,
   getEmployeeTier,
   ECOSYSTEM_SERVICES,
-  OUTPATIENT_CLAIMS_TREND,
 } from '../data';
 import { generateClaimPdfDataUrl, downloadClaimPdf, openClaimPdfInNewTab } from '../lib/claimPdf';
 import { ObservationsReport } from '../components/ObservationsReport';
@@ -304,25 +303,6 @@ export function HrPage() {
           </div>
           <DonutChart labels={statusData.labels} values={statusData.values} size={160} colors={['#10b981', '#f59e0b', '#ef4444']} />
         </div>
-      </div>
-
-      {/* Claims trend */}
-      <div className="card p-5 animate-fade-in">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-brand-50 dark:bg-brand-500/10 flex items-center justify-center text-brand-600 dark:text-brand-400">
-              <Icons.TrendingUp className="w-4 h-4" />
-            </div>
-            <div>
-              <h3 className="font-semibold text-sm text-navy-900 dark:text-white">Outpatient Claims Trend</h3>
-              <p className="text-xs text-slate-400">Monthly claim amount (RM), from submitted claims</p>
-            </div>
-          </div>
-          <span className="text-xs text-slate-400">
-            {OUTPATIENT_CLAIMS_TREND.counts[OUTPATIENT_CLAIMS_TREND.counts.length - 1]} claims this month
-          </span>
-        </div>
-        <LineChart labels={OUTPATIENT_CLAIMS_TREND.labels} values={OUTPATIENT_CLAIMS_TREND.amounts} height={180} color="#3366ff" />
       </div>
 
       {/* Filter tabs */}

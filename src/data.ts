@@ -282,13 +282,6 @@ export const ECOSYSTEM_SERVICES = [
 
 export const MIN_CLAIMS_FOR_REPORT = 100;
 
-// Monthly outpatient claims trend, derived from submitted claims (RM).
-export const OUTPATIENT_CLAIMS_TREND = {
-  labels: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
-  amounts: [2410, 2680, 2950, 3140, 3260, 3320],
-  counts: [22, 24, 27, 28, 29, 30],
-};
-
 export const OBSERVATION_REPORTS: ObservationsReportData[] = [
   {
     period: 'H1 2026',
